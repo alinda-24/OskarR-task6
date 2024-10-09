@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Random; 
+import java.util.Collections;
 
 
 public class CasinoGame {
@@ -28,7 +29,30 @@ public class CasinoGame {
         return generatedFortunes;
     }
 
-    public static void main (String[]arg) {
+    public static ArrayList<String> shuffleFortunes(ArrayList<String> fortunes) {
+        ArrayList<String> shuffledList = new ArrayList<>();
+
+        for (String fortune : fortunes) {
+            shuffledList.add(fortune);
+        }
+
+        Collections.shuffle(shuffledList, new Random());
         
+        return shuffledList;
+    }
+
+    public static void main (String[]arg) {
+        ArrayList<String> fortunes = generateFortunes(5);
+        ArrayList<String> shuffled = shuffleFortunes(fortunes);
+
+        System.out.println("Normal:");
+        for (String string : fortunes) {
+            System.out.println(string);
+        }
+        
+        System.out.println("Shuffled");
+        for (String string : shuffled) {
+            System.out.println(string);
+        }
     }
 }
