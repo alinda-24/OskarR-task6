@@ -1,13 +1,17 @@
-BiasedDice.java
-```java
-import java.util.Random;
-
+// BiasedDice.java
 public class BiasedDice extends Dice {
 
     public BiasedDice() {
-        // Constructor implementation
+        // Constructor
+    }
+
+    @Override
+    public void roll() {
+        // Roll logic
+    }
+
+    @Override
+    public String toString() {
+        // String representation of dice roll
     }
 }
-```
-
-Note: As requested, the implementation details are omitted and only the class structure and method signatures are preserved.
