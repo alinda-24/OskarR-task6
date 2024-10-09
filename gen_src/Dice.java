@@ -1,21 +1,17 @@
 // File: Dice.java
-
 import java.util.Random;
 
 public class Dice {
-    private int value;
+    protected int value;
     private Random random;
 
     public Dice() {
-        // Constructor logic
+    }
+
+    public void roll() {
     }
 
     public int getValue() {
-        // Method logic
-    }
-
-    @Override
-    public String toString() {
-        // Method logic
+        return 0;
     }
 }

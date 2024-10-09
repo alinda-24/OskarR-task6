@@ -1,13 +1,10 @@
-BiasedDice.java
-```java
+// BiasedDice.java
 import java.util.Random;
 
 public class BiasedDice extends Dice {
 
+    // Constructor that biases the dice to roll a six half the time
     public BiasedDice() {
-        // Constructor implementation
+        // Implementation here is omitted
     }
 }
-```
-
-Note: As requested, the implementation details are omitted and only the class structure and method signatures are preserved.
