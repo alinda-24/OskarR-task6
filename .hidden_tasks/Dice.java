@@ -1,27 +1,30 @@
+import java.util.Set;
 import java.util.Random;
 
 public class Dice {
-    private int value;
+    protected int value;
     private Random random;
 
     /**
-     * Constructor that initializes a dice with a random value between 1 and 6.
+     * Constructor initializes the dice with a random value between 1 and 6.
      */
     public Dice() {
         random = new Random();
+        roll(); // Sets a random value for the dice.
+    }
+
+    /**
+     * Rolls the dice to obtain a new random value between 1 and 6.
+     */
+    public void roll() {
         value = random.nextInt(6) + 1;
     }
 
     /**
-     * Returns the value of the dice.
-     * @return the current value of the dice
+     * Gets the current value of the dice.
+     * @return the value of the dice.
      */
     public int getValue() {
         return value;
-    }
-
-    @Override
-    public String toString() {
-        return Integer.toString(value);
     }
 }
