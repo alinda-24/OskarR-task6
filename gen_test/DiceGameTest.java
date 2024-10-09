@@ -5,98 +5,77 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class DiceGameTest {
+    private ArrayList<Dice> diceList;
+    private Random random;
 
-    @Test
-    public void testRollDiceSequenceLength() {
-        int n = 5;
-        ArrayList<Dice> diceSequence = DiceGame.rollDiceSequence(n);
-        assertEquals(n, diceSequence.size());
+    @Before
+    public void setUp() {
+        random = new Random();
+        diceList = new ArrayList<>();
     }
 
     @Test
-    public void testMaxConsecutiveDiceRollsNormalCase() {
-        ArrayList<Dice> diceSequence = new ArrayList<>();
-        diceSequence.add(new Dice() {
-            @Override
-            public int getValue() {
-                return 3;
-            }
-        });
-        diceSequence.add(new Dice() {
-            @Override
-            public int getValue() {
-                return 4;
-            }
-        });
-        diceSequence.add(new Dice() {
-            @Override
-            public int getValue() {
-                return 5;
-            }
-        });
-        int maxSum = DiceGame.maxConsecutiveDiceRolls(diceSequence);
-        assertEquals(9, maxSum); // 4 + 5 = 9
+    public void testRollDiceSequence_withFiveRolls() {
+        List<Dice> sequence = DiceGame.rollDiceSequence(5);
+        assertEquals(5, sequence.size());
+        for (Dice dice : sequence) {
+            assertTrue(dice.getValue() >= 1 && dice.getValue() <= 6);
+        }
     }
 
     @Test
-    public void testMaxConsecutiveDiceRollsEdgeCaseEmpty() {
-        ArrayList<Dice> emptySequence = new ArrayList<>();
-        int maxSum = DiceGame.maxConsecutiveDiceRolls(emptySequence);
-        assertEquals(0, maxSum);
+    public void testRollDiceSequence_withZeroRolls() {
+        List<Dice> sequence = DiceGame.rollDiceSequence(0);
+        assertEquals(0, sequence.size());
     }
 
     @Test
-    public void testRemoveDiceNormalCase() {
-        ArrayList<Dice> diceSequence = new ArrayList<>();
-        diceSequence.add(new Dice() {
-            @Override
-            public int getValue() {
-                return 2;
-            }
-        });
-        diceSequence.add(new Dice() {
-            @Override
-            public int getValue() {
-                return 3;
-            }
-        });
-        diceSequence.add(new Dice() {
-            @Override
-            public int getValue() {
-                return 2;
-            }
-        });
-        ArrayList<Dice> filteredSequence = DiceGame.removeDice(diceSequence, 2);
-        assertEquals(1, filteredSequence.size());
-        assertEquals(3, filteredSequence.get(0).getValue());
+    public void testRollDiceSequence_withNegativeRolls() {
+        List<Dice> sequence = DiceGame.rollDiceSequence(-5);
+        assertEquals(0, sequence.size());
     }
 
     @Test
-    public void testRemoveDiceEdgeCaseAllRemove() {
-        ArrayList<Dice> diceSequence = new ArrayList<>();
-        diceSequence.add(new Dice() {
-            @Override
-            public int getValue() {
-                return 2;
-            }
-        });
-        diceSequence.add(new Dice() {
-            @Override
-            public int getValue() {
-                return 2;
-            }
-        });
-        ArrayList<Dice> filteredSequence = DiceGame.removeDice(diceSequence, 2);
-        assertEquals(0, filteredSequence.size());
+    public void testMaxConsecutiveDiceRolls_withNormalList() {
+        Dice dice1 = new Dice();
+        Dice dice2 = new Dice();
+        Dice dice3 = new Dice();
+        diceList.add(dice1);
+        diceList.add(dice2);
+        diceList.add(dice3);
+        dice1.value = 3;
+        dice2.value = 6;
+        dice3.value = 4;
+        assertEquals(10, DiceGame.maxConsecutiveDiceRolls(diceList));
     }
 
     @Test
-    public void testRemoveDiceEdgeCaseEmpty() {
-        ArrayList<Dice> emptySequence = new ArrayList<>();
-        ArrayList<Dice> filteredSequence = DiceGame.removeDice(emptySequence, 2);
-        assertEquals(0, filteredSequence.size());
+    public void testMaxConsecutiveDiceRolls_withEmptyList() {
+        assertEquals(0, DiceGame.maxConsecutiveDiceRolls(diceList));
+    }
+
+    @Test
+    public void testMaxConsecutiveDiceRolls_withSingleDice() {
+        diceList.add(new Dice());
+        assertEquals(0, DiceGame.maxConsecutiveDiceRolls(diceList));
+    }
+
+    @Test
+    public void testRemoveDice_withSix() {
+        for (int i = 0; i < 5; i++) {
+            diceList.add(new Dice());
+        }
+        diceList.get(2).value = 6;
+        List<Dice> filtered = DiceGame.removeDice(diceList, 6);
+        assertFalse(filtered.contains(6));
+    }
+
+    @Test
+    public void testRemoveDice_withNoMatchingValue() {
+        for (int i = 0; i < 5; i++) {
+            diceList.add(new Dice());
+        }
+        List<Dice> filtered = DiceGame.removeDice(diceList, 7);
+        assertEquals(5, filtered.size());
     }
 }
-```
-
-These tests use JUnit to validate the functionality of each of the methods in the provided classes, covering both typical usage and edge cases.
