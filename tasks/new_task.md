@@ -1,114 +1,100 @@
-## 🎰 Casino Game Assignment: The ForTune Teller 🎲
+## 🧑‍💻 Java Programming Task: Exploring Randomness and Collections
 
-Welcome to the Casino programming task! Today, you'll build a small console-based casino game called **The ForTune Teller**. This hands-on project is designed to enhance your Java skills, focusing on random number generation, conditional logic, collection manipulation, and inheritance. This task is structured into progressive exercises, culminating in a fully functional casino game.
+This exercise will deepen your understanding of the Java `Random` object, the ternary operator, shallow vs deep copies, debugging, and using Iterators to modify collections. An optional challenge will test your understanding of Java inheritance. Let's get started!
 
-### 🔍 Learning Objectives
-- Understand and use the Java `Random` class.
-- Implement and utilize the ternary operator.
-- Differentiate between deep and shallow copies in Java.
-- Detect and fix bugs in your code.
-- Use an `Iterator` to modify collections during iteration.
-- (Optional) Implement inheritance to avoid code duplication.
+### ✨ Learning Goals
 
-## Task Exercises
+- Understanding the Java `Random` class
+- Mastery of the ternary operator
+- Differentiating between deep and shallow copies
+- Debugging skills: Identifying and fixing bugs
+- Using an Iterator to modify collections
+- **Optional**: Utilizing inheritance to prevent code duplication
 
-### Exercise 1: 📚 Theory Check - The Random Pathway 
-#### Goal: Understanding the `Random` object and the ternary operator.
+### 📚 Exercise 1 & 2: Theoretical Exploration
 
-**1.1 Explore the `Random` Class**
-- Read the Java [Random class documentation](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Random.html).
-- Answer these questions:
-  - What is the purpose of the `Random` class?
-  - How can you generate a random integer within a range using `Random`?
+#### Exercise 1: 🎲 Understanding Randomness
 
-**1.2 Ternary Operator**
-- Explain the syntax of the ternary operator with an example. 
-- Discuss some scenarios where using the ternary operator might be preferable to a standard `if-else` statement.
+Java's `Random` class is a powerful tool for generating pseudo-random numbers. Explore [Java's Random API Documentation](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Random.html) and answer the following questions:
 
----
+1. How does the `Random` class generate pseudo-random numbers? Discuss the algorithm used.
+2. What are some typical uses for the `Random` class in software development?
 
-### Exercise 2: 🤔 Conceptual Understanding - Copying Mechanisms
-#### Goal: Understanding deep vs. shallow copies.
+Provide your answers in a markdown file called `random_theory.md`.
 
-**2.1 Deep vs. Shallow Copy**
-- Define deep copy and shallow copy with examples.
-- Discuss how these concepts can impact your program’s behavior, particularly in a gambling game where object state is frequently changing.
+#### Exercise 2: ❓ Ternary Operator Unveiled
 
----
+The ternary operator is a concise way to perform if-else checks. Review the following ternary operator example and explain it:
 
-### Exercise 3: 🔧 Implementation - Luck of the Draw
-#### Goal: Apply random generation and copying.
+```java
+int number = random.nextInt(100);
+String result = (number % 2 == 0) ? "Even" : "Odd";
+```
 
-**3.1 Generate Your Fortune**
-- Implement a method in a Java class called `CasinoGame` that generates a list of random fortunes. Use `Random` to generate random numbers to determine which fortune to generate.
-  ```java
-  public static ArrayList<String> generateFortunes(int n)
-  ```
-  Each fortune should correspond to a unique number (e.g., 1 is "Win Big", 2 is "Better luck next time").
+Questions:
+1. Rewrite the ternary expression as a traditional if-else statement.
+2. Discuss scenarios where using the ternary operator is advantageous.
 
-**3.2 Designing Your Deck**
-- Write a method to shuffle a list of fortunes without modifying the original list. Ensure a **deep copy** of the list:
-  ```java
-  public static ArrayList<String> shuffleFortunes(ArrayList<String> fortunes)
-  ```
-  
----
+Provide your answers in `ternary_explanation.md`.
 
-### Exercise 4: 🔀 Game Mechanics - Roll of the Dice
-#### Goal: Use iterative mechanisms to manipulate collections.
+### 🛠 Exercise 3 & 4: Coding Integration
 
-**4.1 Create A Dice**
-- Define a `Dice` class that simulates a six-sided dice. Use the `Random` object to randomly assign values when the dice is created.
-  ```java
-  public class Dice {
-      private int value;
-      private Random random;
-  }
-  ```
+#### Exercise 3: 🔀 Shuffle and Copy
 
-**4.2 Fortune Sequence**
-- Implement a method to simulate rolling `n` dice, representing a sequence of fortunes aligned with dice values:
-  ```java
-  public static ArrayList<Dice> rollDiceSequence(int n)
-  ```
+Implement a method in a new Java class `CollectionUtil` that creates a **shuffled, deep copy** of an `ArrayList<Integer>`. This method must not modify the original list.
 
----
+```java
+public static ArrayList<Integer> shuffleAndCopy(ArrayList<Integer> list);
+```
 
-### Exercise 5: ❗ Advanced Implementation - Game Scenarios
-#### Build complexity by integrating and testing your components together.
+- Implement logic that ensures the shuffled list does not change when the original list is modified.
+- Use of the `Random` class for shuffling is required.
 
-**5.1 Double Trouble**
-- Implement a method that computes the sum of the two highest consecutive dice values in a sequence:
-  ```java
-  public static int maxConsecutiveDiceRolls(ArrayList<Dice> sequence)
-  ```
+#### Exercise 4: 🐞 Debugging and Fixing
 
-**5.2 Modify on the Move**
-- Write a method that removes all dice with a specific value from a sequence using an `Iterator`:
-  ```java
-  public static ArrayList<Dice> removeDice(ArrayList<Dice> sequence, int value)
-  ```
+Create a method in `CollectionUtil` that has a bug within its logic. The method should aim to return the maximum adjacent sum in an `ArrayList<Integer>`, but currently always returns 0.
 
----
+```java
+public static int findMaxAdjacentSum(ArrayList<Integer> list);
+```
 
-### Exercise 6: 🔨 Inheritance in Play - Extending Functionality
-#### (Optional) Building upon existing classes for feature reuse.
+- Identify the bug(s) and correct them.
+- Provide comments explaining why the fixed version works.
 
-**6.1 Biased Fortune Dice 🎲**
-- Create a class `BiasedDice` that extends `Dice`, having a probability bias towards returning certain values, perhaps skewing fortunes (e.g., higher odds of getting "Win Big").
+### 🔍 Exercise 5 & 6: Advanced Challenges
 
-This class should have logic to prefer higher values (4 to 6), demonstrating functional inheritance and class extension.
+#### Exercise 5: 🔄 Modify While Iterating
 
----
+You will implement a method that removes all integers less than a specified threshold from a list using an Iterator, thereby modifying the list without causing `ConcurrentModificationException`.
 
-### 🔍 Debugging and Final Edits
-As you develop this game, regularly test and fix any bugs that arise, ensuring that your game logic is robust and accurately reflects the casino theme.
+```java
+public static void filterBelowThreshold(ArrayList<Integer> list, int threshold);
+```
 
-### ✅ Final Checklist
-- [ ] Understand and demonstrate the use of `Random` and the ternary operator.
-- [ ] Explain deep and shallow copy concepts.
-- [ ] Generate and shuffle lists effectively and accurately.
-- [ ] Implement iteration and inheritance to build upon classes.
-- [ ] Debugging to ensure a smooth, bug-free gambling simulation!
+- Use the Iterator to safely remove elements while iterating.
+- Demonstrate and document the change in list size using a `main` method or unit tests.
 
-Good luck, and may the odds be ever in your favor as you program your way through The ForTune Teller! 🎲🎉
+#### Exercise 6: 🌳 Exploring Inheritance (Optional)
+
+Create a `Deck` class representing a standard deck of cards using the `Card` class. This class should extend a base class `CardCollection` to avoid duplicating common logic (e.g., shuffling).
+
+1. Implement the `CardCollection` class with basic collection behaviors.
+2. Implement `Deck` with methods to draw cards and shuffle.
+3. Demonstrate the inheritance's efficiency by minimizing duplicate code.
+
+### 📋 Checklist
+
+- [ ] Answer `random_theory.md` and `ternary_explanation.md`.
+- [ ] Implement `CollectionUtil` class with `shuffleAndCopy` and `findMaxAdjacentSum`.
+- [ ] Implement `filterBelowThreshold` ensuring proper use of Iterator.
+- [ ] (Optional) Complete the inheritance challenge with `Deck` and `CardCollection`.
+
+### 🚨 Documentation & Submission
+
+- Add comments explaining your code logic.
+- Use appropriate naming conventions and organize your code into packages if needed.
+- Submit all files including markdown answers and Java source code.
+
+### 🎉 Congratulations!
+
+You've tackled an integrated task focusing on randomness, logic, and collections in Java, preparing you for more advanced programming concepts!
