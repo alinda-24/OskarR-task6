@@ -1,5 +1,4 @@
 // File: Dice.java
-
 import java.util.Random;
 
 public class Dice {
@@ -7,15 +6,14 @@ public class Dice {
     private Random random;
 
     public Dice() {
-        // Constructor logic
     }
 
     public int getValue() {
-        // Method logic
+        return 0;
     }
 
     @Override
     public String toString() {
-        // Method logic
+        return null;
     }
 }
